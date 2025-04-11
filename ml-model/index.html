@@ -1,0 +1,149 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Query Classifier</title>
+</head>
+<body>
+    <h2>Customer Query Classifier 🧩</h2>
+    <textarea id="message" rows="4" cols="50" placeholder="Type your message here..."></textarea><br><br>
+    <button onclick="sendMessage()">Predict Category</button>
+
+    <h3>Prediction:</h3>
+    <p id="result">Your prediction will appear here.</p>
+
+    <script>
+        async function sendMessage() {
+            const message = document.getElementById('message').value;
+
+            const response = await fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message })
+            });
+
+            const data = await response.json();
+            document.getElementById('result').innerText = data.category;
+        }
+    </script>
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Query Classifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f9;
+        }
+        textarea {
+            width: 80%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>Customer Query Classifier 🧩</h2>
+    <textarea id="message" rows="4" cols="50" placeholder="Type your message here..."></textarea><br><br>
+    <button onclick="sendMessage()">Predict Category</button>
+
+    <h3>Prediction:</h3>
+    <p id="result">Your prediction will appear here.</p>
+
+    <script>
+        async function sendMessage() {
+            const message = document.getElementById('message').value;
+
+            if (!message.trim()) {
+                alert('Please enter a message before predicting!');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                document.getElementById('result').innerText = data.category;
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = 'Error occurred while predicting.';
+            }
+        }
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Query Classifier</title>
+</head>
+<body>
+    <h2>Customer Query Classifier 🧩</h2>
+    <textarea id="message" rows="4" cols="50" placeholder="Type your message here..."></textarea><br><br>
+    <button onclick="sendMessage()">Predict Category</button>
+
+    <h3>Prediction:</h3>
+    <p id="result">Your prediction will appear here.</p>
+
+    <script>
+        async function sendMessage() {
+            const message = document.getElementById('message').value;
+
+            try {
+                const response = await fetch('http://localhost:5000/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+                document.getElementById('result').innerText = data.category;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = 'Error: Unable to get prediction.';
+            }
+        }
+    </script>
+</body>
+</html>
+
+

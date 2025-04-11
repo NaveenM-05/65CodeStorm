@@ -1,0 +1,101 @@
+text,label
+My package hasn't arrived yet.,Delivery Delay
+Why is my order taking so long?,Delivery Delay
+"Expected delivery was yesterday, still waiting.",Delivery Delay
+Delivery is delayed beyond the expected date.,Delivery Delay
+"My shipment is late, please check.",Delivery Delay
+Tracking shows no updates for days.,Delivery Delay
+Parcel delayed for more than a week.,Delivery Delay
+I haven't received my delivery confirmation.,Delivery Delay
+Package stuck in transit for too long.,Delivery Delay
+No updates on delivery status.,Delivery Delay
+When will my parcel arrive?,Delivery Delay
+Courier is not delivering my order.,Delivery Delay
+Delivery date postponed multiple times.,Delivery Delay
+Item not delivered as promised.,Delivery Delay
+"My order is overdue, need help.",Delivery Delay
+Shipment not dispatched yet.,Delivery Delay
+Delayed delivery causing issues.,Delivery Delay
+Order stuck at dispatch center.,Delivery Delay
+Package held up at customs.,Delivery Delay
+Logistics delay impacting delivery.,Delivery Delay
+Courier company not responding.,Delivery Delay
+Tracking information is missing.,Delivery Delay
+"Delivery attempt failed, no update.",Delivery Delay
+Order delay is unacceptable.,Delivery Delay
+Package rescheduled for unknown reasons.,Delivery Delay
+My payment failed during checkout.,Payment Issue
+Charged twice for the same order.,Payment Issue
+Incorrect billing amount charged.,Payment Issue
+Payment gateway error during transaction.,Payment Issue
+Refund not received for cancelled order.,Payment Issue
+"Card declined, need assistance.",Payment Issue
+Unable to process my payment.,Payment Issue
+Payment stuck in processing.,Payment Issue
+Overcharged for my recent order.,Payment Issue
+Transaction failed but money deducted.,Payment Issue
+Payment confirmation not received.,Payment Issue
+Card charged but order not placed.,Payment Issue
+EMI option not working.,Payment Issue
+Payment method unavailable.,Payment Issue
+Billing address issue causing payment failure.,Payment Issue
+Auto-debit charged incorrectly.,Payment Issue
+Need help with my payment method.,Payment Issue
+Payment authentication failed.,Payment Issue
+UPI payment not going through.,Payment Issue
+Payment timeout error occurred.,Payment Issue
+Incorrect transaction details.,Payment Issue
+Facing error while making payment.,Payment Issue
+Order placed but payment status unclear.,Payment Issue
+Refund status not updated.,Payment Issue
+Amount debited but order unsuccessful.,Payment Issue
+I want to request a refund.,Refund Request
+Need my money back for the cancelled order.,Refund Request
+Refund not processed yet.,Refund Request
+Waiting for my refund confirmation.,Refund Request
+Order cancelled but no refund.,Refund Request
+How long for the refund to reflect?,Refund Request
+Please process my refund quickly.,Refund Request
+Refund stuck in processing.,Refund Request
+Requesting immediate refund.,Refund Request
+"Money deducted, order cancelled, no refund.",Refund Request
+Need assistance with refund claim.,Refund Request
+Haven't received refund for returned item.,Refund Request
+"Wrong item delivered, need refund.",Refund Request
+Refund taking too long.,Refund Request
+Still waiting for my refund update.,Refund Request
+Where is my refund?,Refund Request
+Refund status shows pending.,Refund Request
+Multiple follow-ups for refund.,Refund Request
+No response on refund request.,Refund Request
+Refund initiated but not completed.,Refund Request
+Refund request not acknowledged.,Refund Request
+How do I track my refund?,Refund Request
+"Order returned, refund not processed.",Refund Request
+Need full refund urgently.,Refund Request
+"Order cancelled, waiting for refund.",Refund Request
+Website is not loading properly.,Technical Issue
+App keeps crashing on launch.,Technical Issue
+Facing login issues on the website.,Technical Issue
+Payment page not opening.,Technical Issue
+Technical error during checkout.,Technical Issue
+Website showing server error.,Technical Issue
+App functionality not working.,Technical Issue
+Unable to reset my password.,Technical Issue
+Error while updating account details.,Technical Issue
+Broken links on the site.,Technical Issue
+Can't upload my documents.,Technical Issue
+Technical glitch while browsing products.,Technical Issue
+Slow loading speed on website.,Technical Issue
+Unable to apply discount code.,Technical Issue
+Cart is not updating.,Technical Issue
+Search function not working properly.,Technical Issue
+Getting 404 error page.,Technical Issue
+Images not loading on app.,Technical Issue
+App stuck on loading screen.,Technical Issue
+Login OTP not received.,Technical Issue
+Website crashes frequently.,Technical Issue
+App freezes while using filters.,Technical Issue
+Payment button not responsive.,Technical Issue
+Site maintenance affecting orders.,Technical Issue
+Checkout page keeps refreshing.,Technical Issue

@@ -92,3 +92,4 @@ def connect_and_fetch():
 
 if __name__ == "__main__":
     connect_and_fetch()
+

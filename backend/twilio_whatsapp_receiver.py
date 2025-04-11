@@ -1,3 +1,4 @@
+
 from fastapi import FastAPI, Request, Form
 from logger import log_service_request  # Assuming you already have this
 from fastapi.responses import JSONResponse
@@ -22,3 +23,4 @@ async def handle_whatsapp(request: Request, From: str = Form(...), Body: str = F
         print("❌", error_message)
         log_service_request(error_message)
         return JSONResponse(content={"status": "error", "message": "Internal server error"}, status_code=500)
+

@@ -172,3 +172,19 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Sensitive data
+*.pkl
+*.env
+*.csv
+*.key
+
+# System files
+__pycache__/
+*.pyc
+.DS_Store
+
+# Binary files that shouldn't be modified
+
+*.bin
+*.h5

@@ -188,3 +188,6 @@ __pycache__/
 
 *.bin
 *.h5
+
+__pycache__/
+*.pyc

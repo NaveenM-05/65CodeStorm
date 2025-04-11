@@ -1,13 +1,12 @@
+import requests  # Make sure requests is installed
 import imaplib
 import email
 from email.header import decode_header
 from bs4 import BeautifulSoup
-from logger import log_service_request  # Import the logging function
+from logger import log_service_request  # Use the shared logger
 
-# --- Configuration ---
-IMAP_SERVER = "imap.gmail.com"
-EMAIL_USER = "elaranoelle24@gmail.com"  # Replace with your email
-EMAIL_PASS = "lubv mffy shmx juru"        # Use App Password or temp account
+# Define the ML Model API URL (Flask app for ML predictions)
+ML_MODEL_API_URL = "http://127.0.0.1:5000/predict"  # Update if deployed elsewhere
 
 def clean_html(html_content):
     """Extract plain text from HTML using BeautifulSoup."""
@@ -17,8 +16,8 @@ def clean_html(html_content):
 def connect_and_fetch():
     try:
         # Connect to the IMAP server
-        mail = imaplib.IMAP4_SSL(IMAP_SERVER)
-        mail.login(EMAIL_USER, EMAIL_PASS)
+        mail = imaplib.IMAP4_SSL("imap.gmail.com")
+        mail.login("elaranoelle24@gmail.com", "lubv mffy shmx juru")
 
         # Select the inbox
         mail.select("inbox")
@@ -41,18 +40,17 @@ def connect_and_fetch():
                     if isinstance(subject, bytes):
                         subject = subject.decode(encoding if encoding else "utf-8")
 
-                    # Decode the sender
+                    # Get sender
                     from_ = msg.get("From")
 
-                    # Initialize body variable
+                    # Initialize email body
                     body = ""
 
-                    # Extract the body (plain text or HTML fallback)
+                    # Extract the email content (plain text, or fallback to HTML)
                     if msg.is_multipart():
                         for part in msg.walk():
                             content_type = part.get_content_type()
                             content_disposition = str(part.get("Content-Disposition"))
-
                             if content_type == "text/plain" and "attachment" not in content_disposition:
                                 body = part.get_payload(decode=True).decode("utf-8", errors="ignore")
                                 break
@@ -67,22 +65,25 @@ def connect_and_fetch():
                             html_content = msg.get_payload(decode=True).decode("utf-8", errors="ignore")
                             body = clean_html(html_content)
 
-                    # Prepare a formatted log message for the email
-                    log_message = (
-                        f"Email Received - From: {from_}, Subject: {subject}, "
-                        f"Body (truncated): {body.strip()[:100]}, Full Body: {body.strip()}"
+                    # Send the email body to the ML model API for prediction
+                    response = requests.post(
+                        ML_MODEL_API_URL,
+                        json={"message": body}  # Payload as JSON
                     )
 
-                    # Print the extracted details to terminal
-                    print("📩 New Email:")
-                    print("From:", from_)
-                    print("Subject:", subject)
-                    print("Body:\n", body.strip())
-                    print("-" * 60)
-
-                    # Log the email details to service_request.log
-                    log_service_request(log_message)
-
+                    if response.status_code == 200:
+                        prediction = response.json()
+                        print("Prediction:", prediction)
+                        # Prepare a log message combining email details and ML prediction
+                        log_message = (
+                            f"Email Received - From: {from_}, Subject: {subject}, "
+                            f"Body (truncated): {body.strip()[:100]}, Prediction: {prediction}"
+                        )
+                        log_service_request(log_message)
+                    else:
+                        err_message = f"Error with prediction for email from {from_}: {response.json()}"
+                        print(err_message)
+                        log_service_request(err_message)
         mail.logout()
 
     except Exception as e:
@@ -92,4 +93,3 @@ def connect_and_fetch():
 
 if __name__ == "__main__":
     connect_and_fetch()
-

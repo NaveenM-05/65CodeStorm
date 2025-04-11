@@ -2,7 +2,7 @@ import logging
 import os
 
 # Define the log file path relative to this file
-LOG_FILE = os.path.join(os.path.dirname(__file__), "service_request.log")
+LOG_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "service_request.log")
 
 # Create a logger with a specified name
 logger = logging.getLogger("service_request")

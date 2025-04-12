@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Support Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Basic styling for a clean dashboard */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+    header {
+      background-color: #007BFF;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .hidden {
+      display: none;
+    }
+    input, select, button {
+      padding: 8px;
+      font-size: 16px;
+      margin: 5px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    h2 {
+      color: #333;
+    }
+    .log-entry {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+    .log-entry:last-child {
+      border-bottom: none;
+    }
+    .action-btn {
+      margin-top: 10px;
+      padding: 5px 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .action-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Employee Support Dashboard</h1>
+  </header>
+
+  <!-- Login Section -->
+  <div class="container" id="loginContainer">
+    <h2>Employee Login</h2>
+    <label for="empID">Employee ID:</label>
+    <input type="text" id="empID" placeholder="Enter your Employee ID" required>
+    <label for="empDept">Select Your Department:</label>
+    <select id="empDept">
+      <option value="Vehicle & Driver Support">Vehicle & Driver Support</option>
+      <option value="IT Support">IT Support</option>
+      <option value="Account Management">Account Management</option>
+      <option value="General Support">General Support</option>
+      <!-- Add more departments as needed -->
+    </select>
+    <button onclick="login()">Login</button>
+  </div>
+
+  <!-- Dashboard Section (hidden by default) -->
+  <div class="container hidden" id="dashboardContainer">
+    <h2>Your Assigned Queries</h2>
+    <button onclick="refreshLogs()">Refresh Queries</button>
+    <div id="queryList">
+      <!-- Queries will be dynamically loaded here -->
+    </div>
+  </div>
+
+  <script>
+    // Function to log in an employee (for demo purposes, we use localStorage)
+    function login() {
+      const empID = document.getElementById('empID').value.trim();
+      const empDept = document.getElementById('empDept').value;
+
+      if (empID === '') {
+        alert("Please enter your Employee ID.");
+        return;
+      }
+
+      // Save employee info in localStorage for later use
+      const employee = { empID, empDept };
+      localStorage.setItem("employee", JSON.stringify(employee));
+
+      // Hide login, show dashboard
+      document.getElementById("loginContainer").classList.add("hidden");
+      document.getElementById("dashboardContainer").classList.remove("hidden");
+
+      // Update header with employee details
+      document.querySelector("header h1").textContent = `Welcome, Employee ${empID} (${empDept})`;
+
+      // Fetch and display logs filtered by department
+      refreshLogs();
+    }
+
+    async function refreshLogs() {
+      try {
+        // Fetch log data from your backend endpoint
+        const response = await fetch("http://localhost:5000/get-log");
+        if (!response.ok) {
+          document.getElementById("queryList").textContent = "Error fetching logs.";
+          return;
+        }
+        const logText = await response.text();
+        const logLines = logText.split("\n").filter(line => line.trim() !== "");
+
+        const employee = JSON.parse(localStorage.getItem("employee"));
+        // Filter log lines that mention the employee's department
+        // Assumes log lines include the department text as part of the classification info.
+        const filteredLogs = logLines.filter(line => line.includes(employee.empDept));
+
+        renderLogs(filteredLogs);
+      } catch (error) {
+        document.getElementById("queryList").textContent = "Error: " + error;
+      }
+    }
+
+    function renderLogs(logs) {
+      const queryList = document.getElementById("queryList");
+      queryList.innerHTML = "";
+      if (logs.length === 0) {
+        queryList.innerHTML = "<p>No queries found for your department.</p>";
+        return;
+      }
+      logs.forEach(line => {
+        const div = document.createElement("div");
+        div.className = "log-entry";
+        div.textContent = line;
+
+        const contactBtn = document.createElement("button");
+        contactBtn.className = "action-btn";
+        contactBtn.textContent = "Contact Customer";
+        contactBtn.onclick = () => {
+          alert("Initiate contact for: " + line);
+          // Implement your communication logic here (e.g., open email client or trigger SMS)
+        };
+
+        div.appendChild(document.createElement("br"));
+        div.appendChild(contactBtn);
+        queryList.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>

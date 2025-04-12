@@ -1,0 +1,30 @@
+[33mcommit 97e9f6df526d06d3521cf33fffd2559948388375[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: NaveenM-05 <naveenm0524@gmail.com>
+Date:   Sat Apr 12 02:57:29 2025 +0530
+
+    Integrated ML model2 with backend, updated logging, removed __pycache__ files
+
+[33mcommit d4de8b7aecf7caa633c588ef656c3d23604aa6ac[m
+Merge: d66ce3c ee196a7
+Author: NaveenM-05 <naveenm0524@gmail.com>
+Date:   Sat Apr 12 01:12:54 2025 +0530
+
+    Resolved conflicts - kept local changes
+
+[33mcommit d66ce3ccdbabc29d486315328e978c61d2e63899[m
+Author: NaveenM-05 <naveenm0524@gmail.com>
+Date:   Sat Apr 12 01:04:56 2025 +0530
+
+    Cleaned up env files and added .gitignore
+
+[33mcommit ee196a7b992e96262c3c1b2d75cde6454befc142[m
+Author: NaveenM-05 <naveenm0524@gmail.com>
+Date:   Fri Apr 11 19:22:42 2025 +0530
+
+    feat: Add core project structure with backend, ML model.
+
+[33mcommit 61a7ff6555ff83016ac80a893d99e9c3b9a7011f[m
+Author: NaveenM-05 <148896272+NaveenM-05@users.noreply.github.com>
+Date:   Fri Apr 11 18:29:27 2025 +0530
+
+    Initial commit
